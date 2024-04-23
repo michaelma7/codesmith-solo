@@ -1,12 +1,17 @@
+# dependencies
 node_modules/
 
+#General
 .env
+#aws deployment
 *.zip
 
+#jest coverage
 .vscode/
 coverage/
 
-dist
+#webpack output
+dist/
 
 #logs
 logs

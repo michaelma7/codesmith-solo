@@ -11,13 +11,14 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '/index.html'),
+      template: path.join(__dirname, '/client/index.html'),
       filename: 'index.html',
     }),
   ],
 
   devServer: {
     static: {
+      host: 'localhost'
       directory: path.join(__dirname, '/dist'),
       publicPath: '/',
     },
