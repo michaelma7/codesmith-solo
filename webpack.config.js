@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './client/index.js',
@@ -14,11 +15,11 @@ module.exports = {
       template: path.join(__dirname, '/client/index.html'),
       filename: 'index.html',
     }),
+    new MiniCssExtractPlugin(),
   ],
 
   devServer: {
     static: {
-      host: 'localhost'
       directory: path.join(__dirname, '/dist'),
       publicPath: '/',
     },
@@ -52,9 +53,28 @@ module.exports = {
           },
         },
       },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     'style-loader',
+      //     'css-loader',
+      //     'sass-loader',
+      //     'postcss-loader',
+      //   ],
+      // },
       {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        type: 'asset',
       },
     ],
   },
