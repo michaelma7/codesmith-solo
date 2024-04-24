@@ -11,13 +11,8 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import './styles.css';
+import App from './App.jsx';
 
 const root = createRoot(document.getElementById('contents'));
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.querySelector('body')
-);
+root.render(<App />);
