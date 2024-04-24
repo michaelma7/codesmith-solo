@@ -6,9 +6,10 @@
     "build": "NODE_ENV=production webpack",
     "build-dev": "webpack --watch",
     "start": "nodemon server/server.js",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --progress --color\" \"nodemon ./server/server.js\""
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --color\" \"nodemon ./server/server.js\""
   },
   "dependencies": {
+    "@vis.gl/react-google-maps": "^0.9.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "react": "^18.2.0",
