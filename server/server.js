@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = 3000;
+require('dotenv').config();
 
 //routers
 const googleRouter = require('./routers/google.js');
@@ -10,6 +11,9 @@ app.use(express.json());
 
 //static route
 app.use(express.static(path.join(__dirname, '../client')));
+
+//google map init
+app.use('/api', googleRouter);
 
 // route handler to respond with main app
 app.get('/', (req, res) => {
@@ -27,7 +31,6 @@ app.get('/', (req, res) => {
 // catch-all route handler for any requests to an unknown route
 // Unknown route handler
 app.use((req, res) => {
-  console.log('hit 404');
   return res.sendStatus(404);
 });
 

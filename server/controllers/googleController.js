@@ -1,5 +1,4 @@
 const fs = require('fs/promises');
-const fsCallback = require('fs');
 const path = require('path');
 
 // helper function to create googleController error objects
@@ -17,5 +16,11 @@ const createErr = (errInfo) => {
 };
 
 const googleController = {};
+
+googleController.getKey = (req, res, next) => {
+  //give key back in res locals
+  res.locals.key = process.env.GOOGLE_API_KEY;
+  return next();
+};
 
 module.exports = googleController;
