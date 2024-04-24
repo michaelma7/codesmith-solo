@@ -3,16 +3,33 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+//routers
+const googleRouter = require('./routers/google.js');
+
 app.use(express.json());
+
+//static route
+app.use(express.static(path.join(__dirname, '../client')));
+
+// route handler to respond with main app
+app.get('/', (req, res) => {
+  return res
+    .status(200)
+    .sendFile(path.join(__dirname, './../client/index.html'));
+});
+
+// app.get('/styles.css', (req, res) => {
+//   return res
+//     .status(200)
+//     .sendFile(path.join(__dirname, './../client/styles.css'));
+// });
 
 // catch-all route handler for any requests to an unknown route
 // Unknown route handler
-app.use((req, res) => res.sendStatus(404));
-
-// route handler to respond with main app
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, './../client/index.html'))
-);
+app.use((req, res) => {
+  console.log('hit 404');
+  return res.sendStatus(404);
+});
 
 /**
  * configure express global error handler

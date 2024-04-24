@@ -6,6 +6,7 @@ import TextInput from './../components/TextInput.jsx';
 export default function Homepage({ props }) {
   const submit = (e) => {
     e.preventDefault();
+    console.log(data);
     //get request for location from google maps?
   };
 
@@ -19,14 +20,15 @@ export default function Homepage({ props }) {
         <TextInput
           id='location'
           className='mt-1 block w-full'
-          value={data.name}
-          handleChange={(e) => setData('location', e.target.value)}
+          value={data}
+          handleChange={(e) => setData(e.target.value)}
           required
           isFocused
-          autoComplete='New York'
         />
         <InputError for='location' value='location' />
-        <button className='submit'>Set Location</button>
+        <button className='submit' type='submit'>
+          Set Location
+        </button>
       </form>
       <button className='getFood'>Try This!</button>
     </div>
