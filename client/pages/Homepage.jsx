@@ -8,13 +8,12 @@ export default function Homepage({ props }) {
   const submit = (e) => {
     e.preventDefault();
     console.log(data);
-    //get request for location from google maps?
   };
 
   const [data, setData] = useState('');
   const [key, setKey] = useState('');
 
-  //on load fetch
+  // on load fetch
   // useEffect(() => {
   //   async function fetchKey() {
   //     //fetch api key from backend
@@ -31,27 +30,28 @@ export default function Homepage({ props }) {
   //   }
   //   fetchKey();
   // }, []);
-  useEffect(() => {
-    let map;
-    async function initMap() {
-      const defaultPosition = { lat: 40.4305, lng: 74.0008 };
-      const { Map } = await google.maps.importLibrary('maps');
-      const { AdvancedMarkerElement } = await google.maps.importLibrary(
-        'marker'
-      );
-      map = new Map(document.getElementById('map'), {
-        zoom: 10,
-        center: defaultPosition,
-        mapId: '57138afb5cc9e472',
-      });
-      const marker = new AdvancedMarkerElement({
-        map: map,
-        position: defaultPosition,
-        title: 'Where You at',
-      });
-    }
-    initMap();
-  }, []);
+
+  // useEffect(() => {
+  //   let map;
+  //   async function initMap() {
+  //     const defaultPosition = { lat: 40.4305, lng: 74.0008 };
+  //     const { Map } = await google.maps.importLibrary('maps');
+  //     const { AdvancedMarkerElement } = await google.maps.importLibrary(
+  //       'marker'
+  //     );
+  //     map = new Map(document.getElementById('map'), {
+  //       zoom: 10,
+  //       center: defaultPosition,
+  //       mapId: '57138afb5cc9e472',
+  //     });
+  //     const marker = new AdvancedMarkerElement({
+  //       map: map,
+  //       position: defaultPosition,
+  //       title: 'Where You at',
+  //     });
+  //   }
+  //   initMap();
+  // }, []);
 
   return (
     <div className='homepage'>
@@ -73,7 +73,8 @@ export default function Homepage({ props }) {
           Set Location
         </button>
       </form>
-      <button className='getFood'>Try This!</button>
+
+      <button className='getFood'>I am feeling Lucky!</button>
     </div>
   );
 }
