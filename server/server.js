@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 require('dotenv').config();
-
 //routers
-const googleRouter = require('./routers/google.js');
+//const googleRouter = require('./routers/google.js');
+const foodRouter = require('./routers/food.js');
 
 app.use(express.json());
 
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client')));
 
 //google map init
-app.use('/api', googleRouter);
+app.use('/api', foodRouter);
 
 // route handler to respond with main app
 app.get('/', (req, res) => {
