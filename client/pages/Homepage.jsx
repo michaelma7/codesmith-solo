@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FoodForm from './../components/FoodForm.jsx';
+import { Link } from 'react-router-dom';
 // import Map from './../components/Map.jsx';
 
 export default function Homepage({ props }) {
@@ -51,6 +52,7 @@ export default function Homepage({ props }) {
       <p>Pick a place on the map or submit your location below</p>
       {/* <Map apiKey={'AIzaSyDopUhrzMq9AEFFdKUu9nSdCPyo56zGo8E'} /> */}
       <FoodForm />
+      <Link to={`addItem`}>Add New Food</Link>
       <button className='getFood'>I am feeling Lucky!</button>
     </div>
   );

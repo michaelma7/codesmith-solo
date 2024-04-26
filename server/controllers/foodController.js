@@ -19,8 +19,9 @@ const foodController = {};
 foodController.getFoodItem = async (req, res, next) => {
   try {
     //sanitize location entry
-    const array = [req.query.location];
-    const query = `SELECT * FROM food WHERE food.region = $1;`;
+    const array = [req.params.location];
+    console.log(req.params);
+    const query = `SELECT * FROM food WHERE food.region=$1;`;
     const data = await db.query(query, array);
     //check for no match
     if(data.length === 0) {
@@ -44,18 +45,18 @@ foodController.getFoodItem = async (req, res, next) => {
 foodController.createFoodItem = async (req, res, next) => {
   try {
     //sanitize data
-    const { name, region, country, description, history } = req.body;
-    const arrayOfParams = [ name, region, country, description, history ];
+    const { id, name, region, country, description, history } = req.body;
+    console.log({ id, name, region, country, description, history });
+    const arrayOfParams = [ id, name, region, country, description, history ];
     //check each param for proper type string
-    for(param of arrayOfParams) {
-      if(typeof param !== 'string') throw 'Mismatch data type'
-    }
+    // for(param of arrayOfParams) {
+    //   if(typeof param !== 'string') throw 'Mismatch data type'
+    // }
     const insert = `INSERT INTO food 
-    (name, region, country, description, history)
-    VALUES ($1, $2, $3, $4, $5)
-    RETURNING id;`;
-    const id = await db.query(insert, arrayOfParams);
-    res.locals.id = id;
+    (id, name, region, country, description, history)
+    VALUES ($1, $2, $3, $4, $5, $6);`;
+    const res = await db.query(insert, arrayOfParams);
+    res.locals.id = res;
     return next();
   } catch (err) {
     return next(createErr({

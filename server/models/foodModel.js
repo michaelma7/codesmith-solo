@@ -3,7 +3,11 @@ require('dotenv').config();
 
 const PG_URI = process.env.PG_URI;
 const pool = new Pool({
-  connectionString: PG_URI,
+  user: 'postgres',
+  host: 'localhost',
+  database: 'fooddb',
+  password: 'postgres',
+  port: 5432,
 });
 
 module.exports = {

@@ -24,7 +24,7 @@ export const foodSlice = createSlice({
 export const getFoodAsync = location => {
   return async (dispatch, getState) => {
     try {
-      const foodData = await fetch(`/api/:${location}`);
+      const foodData = await fetch(`/api/${location}`);
       //check for empty data 
       if(!foodData.name) {
         throw 'Could not find food for area. Check back later!';

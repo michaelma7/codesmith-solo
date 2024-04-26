@@ -8,7 +8,7 @@ router.get('/:location', foodController.getFoodItem, (req, res) => {
 });
 
 router.post('/', foodController.createFoodItem, (req, res) => {
-  return res.status(201).json();
+  return res.status(201).json(res.locals.id);
 });
 
 router.patch('/:id', (req, res) => {
